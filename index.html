@@ -256,7 +256,7 @@ function loadVideos(){
         if(data.completado){
             alert("ya lo hizo")
         }else{
-            for(i = data.actual;i<preguntas_data.length;i++){
+            for(i = 0;i<preguntas_data.length;i++){
                 var div = document.createElement('div')
                 div.className = 'situacion-frame situacion-frame-off'
                 div.id = 'situacion-frame-'+(i+1)
@@ -265,11 +265,11 @@ function loadVideos(){
             }
             
             actual_pregunta = data.actual
+            resultados = data.puntaje
             lv = data.actual
             loadVideo()
         }
     })
-    
 }
 
 var animacion_welcome = null

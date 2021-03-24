@@ -51,6 +51,10 @@ function initScorm(callBack){
             callBack(respuestas_usuario)
         }else{
             console.log("no definida suspend data")
+            /*_data = '{"datos":{"actual":2,"respuestas":[{"respuesta":"El proveedor Z tiene disponibilidad luego de una semana, es la oferta más costosa, pero cuenta con estándares de seguridad robustos ajustándose a los requisitos HESQ de YARA.","resultado":"correcto"},{"respuesta":"Escalar por correo electrónico al Site Manager y al Supervisor del Sitio. Esperar que la información sea revisada durante la semana.","resultado":"incorrecto"},{"respuesta":"","resultado":""},{"respuesta":"","resultado":""},{"respuesta":"","resultado":""},{"respuesta":"","resultado":""},{"respuesta":"","resultado":""},{"respuesta":"","resultado":""},{"respuesta":"","resultado":""},{"respuesta":"","resultado":""},{"respuesta":"","resultado":""}],"completado":false,"puntaje":1},"total_attemps":1,"name":"Competencia de liderazgo en seguridad"}'
+            var suspend_parsed = JSON.parse(_data)
+            data_scorm = suspend_parsed.datos
+            respuestas_usuario = data_scorm*/
             callBack(respuestas_usuario)
         }
     }else{

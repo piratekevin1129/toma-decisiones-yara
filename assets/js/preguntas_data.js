@@ -4,9 +4,9 @@ var preguntas_data = [
         size:'normal',
         vimeo:'519127935',
         pregunta:'¿Qué proveedor debe elegir Juan?',
-        opcion1:'El proveedor "X" está disponible de inmediato, se compromete a  cumplir con los requisitos HESQ de Yara en los próximos meses y es la oferta más económica.',
-        opcion2:'El proveedor "Y" está disponible de inmediato y tiene buenas referencias de mercado en términos de seguridad. Cuenta con personal sin experiencia en trabajo en alturas.',
-        opcion3:'El proveedor "Z" tiene disponibilidad luego de una semana, es la oferta más costosa, pero cuenta con estándares de seguridad robustos ajustándose a los requisitos HESQ de YARA.',
+        opcion1:'El proveedor X está disponible de inmediato, se compromete a  cumplir con los requisitos HESQ de Yara en los próximos meses y es la oferta más económica.',
+        opcion2:'El proveedor Y está disponible de inmediato y tiene buenas referencias de mercado en términos de seguridad. Cuenta con personal sin experiencia en trabajo en alturas.',
+        opcion3:'El proveedor Z tiene disponibilidad luego de una semana, es la oferta más costosa, pero cuenta con estándares de seguridad robustos ajustándose a los requisitos HESQ de YARA.',
         correcto:3,
         video:'1.mp4',
         bien:{
