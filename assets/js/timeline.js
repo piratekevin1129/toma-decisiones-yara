@@ -3,6 +3,7 @@ var _tl_current = 0
 var _animation_timeline = null
 
 function setTimeline(status){
+    getE('situacion-controls').className = 'timeline-on'
     player.getDuration().then(function(duration) {
         _tl_duration = duration
 
@@ -30,6 +31,7 @@ function setTimeline(status){
 }
 
 function unsetTimeline(){
+    getE('situacion-controls').className = 'timeline-off'
     stopTimeline()
 }
 
@@ -98,13 +100,13 @@ function clickTimeline(event){
 
     if(duracion>_tl_current){
         //quiere avanzar, nel
-        //if(resumed){
+        if(resumed){
             stopTimeline()
             getE('bar-progress').style.width = porcentaje+'%'
             player.setCurrentTime(duracion).then(function() {
                 resumeTimeline()
             })
-        //}
+        }
     }else{
         //quiere retroceder, ok
         stopTimeline()

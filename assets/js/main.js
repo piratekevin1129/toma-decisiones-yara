@@ -60,7 +60,12 @@ var animacion_situacion = null
 function displayPlayer(p){
     getE('situacion-frame-'+(p+1)).classList.remove('situacion-frame-off')
     getE('situacion-frame-'+(p+1)).classList.add('situacion-frame-on')
+    
+    //console.log(players)
     player = players[p]
+    
+    //console.log(p)
+    //console.log(player)
 }
 
 function setPregunta(){
@@ -118,6 +123,7 @@ function setPregunta(){
         },100)
 
         spdPlayMovieclip({frame:1,stop:0,loop:true},0)
+        respuestas_usuario.completado = true
         saveScorm(true)
     }else{
         actual_pregunta_data = preguntas_data[actual_pregunta]
@@ -149,7 +155,7 @@ function setPregunta(){
         //spdPlayAnimation({frame:1,stop:0,loop:true},0)
         getE('header').className = 'header-off'
 
-        if(actual_pregunta>0){
+        if(player!=null){
             players[actual_pregunta-1].destroy().then(function() {
                 players[actual_pregunta-1] = null
                 getE('situacion-frame-'+actual_pregunta).classList.remove('situacion-frame-on')
@@ -160,7 +166,6 @@ function setPregunta(){
                 getE('situacion').className = 'situacion-on'
                 getE('situaciones-mask').className = 'situaciones-mask-on'
                 getE('pregunta-app').className = 'pregunta-off'
-                getE('caso-txt').innerHTML = 'Caso '+(actual_pregunta+1)
                 underground_mp3.pause()
     
                 loadedVideo()
@@ -214,6 +219,7 @@ function endVideo(data){
             }
             underground_mp3.play()
             
+            getE('caso-txt').innerHTML = 'Caso '+(actual_pregunta+1)
             getE('header').className = 'header-on'
             var o = 0
             getE('pregunta-cont').classList.remove('pregunta-init')

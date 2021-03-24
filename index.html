@@ -76,7 +76,7 @@
         <div id="situaciones-frame"></div>
         <div id="situaciones-mask" class="situaciones-mask-on"></div>
         <!--<video id="situacion-video" autoplay="autoplay" controls="controls"></video>-->
-        <div id="situacion-controls">
+        <div id="situacion-controls" class="timeline-off">
             <div id="timeline-zone" onclick="toggleVideoPlay()"></div>
             <div id="timeline">
                 <button id="play-btn" class="play-btn-play" status="paused" onclick="toggleVideoPlay()"></button>
@@ -206,6 +206,10 @@ var intro_mp3 = null
 var animacion_init = null
 
 window.onload = function(){
+    var game_height = getE('contenedor').offsetHeight
+    console.log(game_height)
+    window.top.postMessage({'completado': false, 'alto': game_height}, '*' );
+
     spdLoadSprite({idname:'loader-clip',autoplay:'off',callBack:function(){ 
         spdCreateAnimation({id:0,sprite:'loader-clip'})
         spdPlayAnimation({frame:1,stop:0,loop:true},0)
@@ -227,6 +231,7 @@ window.onload = function(){
                 loadImage({url:'assets/images/opcion1-cont-large.png',callBack:function(){
                 loadImage({url:'assets/images/opcion2-cont-large.png',callBack:function(){
                 loadImage({url:'assets/images/opcion3-cont-large.png',callBack:function(){
+                loadImage({url:'assets/images/final.jpg',callBack:function(){
                     //animacion_init = setTimeout(function(){
                         //clearTimeout(animacion_init)
                         //animacion_init = null
@@ -234,6 +239,7 @@ window.onload = function(){
                         loadVideos()
                         
                     //},2000)
+                }})
                 }})
                 }})
                 }})
@@ -252,9 +258,26 @@ var players_data = []
 var lv = 0
 
 function loadVideos(){
-    initScorm(function(data){
+    initScorm(function(data,loaded){
+        if(!loaded){
+            for(i = 0;i<preguntas_data.length;i++){
+                respuestas_usuario.respuestas.push({respuesta:'',resultado:'',id:preguntas_data[i].id})
+            }
+        }
         if(data.completado){
-            alert("ya lo hizo")
+            console.log("ya lo hizo")
+            //poner mensaje de que ya lo hizo
+            getE('loader-text').innerHTML = '100%'
+            
+            getE('loader').className = 'loader-off'
+            spdStopAnimation(0)
+
+            getE('welcomepage-title').innerHTML = 'Juego Finalizado'
+            getE('welcomepage-subtitle').innerHTML = 'Ya realizaste este contenido. <br /> Te estaremos notificando sobre futuros cursos y juegos'
+            getE('welcomepage-btn').style.visibility = 'hidden'
+            getE('welcomepage-btn').removeAttribute('onclick')
+
+            setWelcomePage()
         }else{
             for(i = 0;i<preguntas_data.length;i++){
                 var div = document.createElement('div')
@@ -262,6 +285,7 @@ function loadVideos(){
                 div.id = 'situacion-frame-'+(i+1)
     
                 getE('situaciones-frame').appendChild(div)
+                players.push(null)
             }
             
             actual_pregunta = data.actual
@@ -311,6 +335,21 @@ var welcome_elements = [
     }
 ]
 
+function setWelcomePage(){
+    var w = 0
+    animacion_welcome = setInterval(function(){
+        if(w==welcome_elements.length){
+            clearInterval(animacion_welcome)
+            animacion_welcome = null
+        }else{
+            welcome_elements[w].element.classList.remove(welcome_elements[w].class)
+            welcome_elements[w].element.classList.add(welcome_elements[w].new)
+            w++
+        }
+    },200)
+    intro_mp3.play()
+}
+
 function loadVideo(){
     if(lv==preguntas_data.length){
         //console.log("all videos loaded")
@@ -320,19 +359,7 @@ function loadVideo(){
         spdStopAnimation(0)
 
         //animar welcomepage
-        var w = 0
-        
-        animacion_welcome = setInterval(function(){
-            if(w==welcome_elements.length){
-                clearInterval(animacion_welcome)
-                animacion_welcome = null
-            }else{
-                welcome_elements[w].element.classList.remove(welcome_elements[w].class)
-                welcome_elements[w].element.classList.add(welcome_elements[w].new)
-                w++
-            }
-        },200)
-        intro_mp3.play()
+        setWelcomePage()
     }else{
         var player_options = {
             id:preguntas_data[lv].vimeo,
@@ -347,10 +374,9 @@ function loadVideo(){
 
         var vplayer = new Vimeo.Player('situacion-frame-'+(lv+1), player_options);
         vplayer.on('loaded',function(data){
-            players.push(vplayer)
+            players[lv] = vplayer
             lv++
             getE('loader-text').innerHTML = String(parseInt((100*lv)/preguntas_data.length))+'%'
-            respuestas_usuario.respuestas.push({respuesta:'',resultado:''})
             loadVideo()
         })
     }
