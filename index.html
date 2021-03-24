@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html translate="no" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    
+    <!--Estilos propios-->
+    <link href="assets/css/fonts.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/master.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+
+    <!--Librerias-->
+    <link href="assets/sprites/fotograma.css" rel="stylesheet" type="text/css" />
+    <link href="assets/sprites/sprite.css" rel="stylesheet" type="text/css" />
+    <title>Toma de decisiones</title>
+</head>
+<body onbeforeunload="doUnload(false);" onunload="doUnload();">
+
+<div id="contenedor">
+    <div id="fondo" class="fondo-animating"></div>
+    
+    <div id="pregunta-app" class="pregunta-off">
+        <div id="pregunta-cont" class="pregunta-init">
+            <!--<div id="timer">
+                <p>60</p>
+            </div>-->
+            <p id="pregunta-txt">¿Que proveedor debe elegir Juan?</p>
+        </div>
+
+        <div id="opciones-cont">
+            <div id="opcion1" class="opcion1-normal opcion-cont opcion1_init">
+                <div class="opcion-cont-over"></div>
+                <div class="opcion-letra">A</div>
+                <div class="efecto"></div>
+                <div class="opcion-descripcion">
+                    <p id="opcion1-txt">El proveedor "Y" está disponible de inmediato y tiene buenas referencias de mercado en términos de seguridad. Cuenta con personal sin experiencia en trabajo en alturas.</p>
+                </div>
+                <div class="result-icon icon-off"></div>
+            </div>
+
+            <div id="opcion2" class="opcion2-normal opcion-cont opcion2_init" >
+                <div class="opcion-cont-over"></div>
+                <div class="opcion-letra">B</div>
+                <div class="efecto"></div>
+                <div class="opcion-descripcion">
+                    <p id="opcion2-txt">El proveedor "Y" está disponible de inmediato y tiene buenas referencias de mercado en términos de seguridad. Cuenta con personal sin experiencia en trabajo en alturas.</p>
+                </div>
+                <div class="result-icon icon-off"></div>
+            </div>
+
+            <div id="opcion3" class="opcion3-normal opcion-cont opcion3_init">
+                <div class="opcion-cont-over"></div>
+                <div class="opcion-letra">C</div>
+                <div class="efecto"></div>
+                <div class="opcion-descripcion">
+                    <p id="opcion3-txt">El proveedor "Y" está disponible de inmediato y tiene buenas referencias de mercado en términos de seguridad. Cuenta con personal sin experiencia en trabajo en alturas.</p>
+                </div>
+                <div class="result-icon icon-off"></div>
+            </div>
+
+            <div id="zonas" class="zonas-off">
+                <div class="zona" id="zona1" onmouseover="overOpcion(1)" onmouseout="outOpcion(1)" onclick="clickOpcion(1)"></div>
+                <div class="zona" id="zona2" onmouseover="overOpcion(2)" onmouseout="outOpcion(2)" onclick="clickOpcion(2)"></div>
+                <div class="zona" id="zona3" onmouseover="overOpcion(3)" onmouseout="outOpcion(3)" onclick="clickOpcion(3)"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="situacion" class="situacion-off">
+        <div id="situaciones-frame"></div>
+        <div id="situaciones-mask" class="situaciones-mask-on"></div>
+        <!--<video id="situacion-video" autoplay="autoplay" controls="controls"></video>-->
+        <div id="situacion-controls">
+            <div id="timeline-zone" onclick="toggleVideoPlay()"></div>
+            <div id="timeline">
+                <button id="play-btn" class="play-btn-play" status="paused" onclick="toggleVideoPlay()"></button>
+                <div id="bar-cont">
+                    <div id="bar" onclick="clickTimeline(event)">
+                        <div id="bar-progress"></div>
+                    </div>
+                    <div id="volumen" onclick="clickVolumen(event)">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="retroalimentacion" class="retroalimentacion-off">
+        <div id="retroalimentacion-box">
+            <div id="retroalimentacion-txt">
+                <p id="retroalimentacion-title">asdasd</p>
+                <ul id="retroaliementacion-list">
+                    <li>asasd</li>
+                    <li>asasd</li>
+                </ul>
+                <p id="retroalimentacion-msg"></p>
+            </div>
+            <button id="retroalimentacion-btn" onmouseover="overContinuar()" onmouseout="outContinuar()" onclick="clickContinuar()">Continuar</button>
+        </div>
+    </div>
+
+    <div id="escenario" class="escenario-off">
+        <div id="personaje" class="spd_movieclip" width="140" height="380" frames="50" src="assets/images/personaje/"></div>
+        <div id="resultado-box" class="resultado-off">
+            <p id="resultado-texto">Sigue así y vamos enseña otros </p>
+            <h1>Resultados</h1>
+            <div id="resultado-content">
+                <h2 id="resultado-intro">Felicitaciones. Tus acciones como líder nos permiten concluir que:</h2>
+                <ul id="resultado-lista">
+                    <li>Hola</li>
+                    <li>Hola</li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    <audio id="audio_pregunta"></audio>
+    <audio id="audio_retro_bien"></audio>
+    <audio id="audio_retro_mal"></audio>
+    <audio id="audio_final"></audio>
+    <audio id="underground_mp3" onended="repeatUnderground()">
+        <source src="assets/media/underground.mp3" type="audio/mp3" />
+    </audio>
+
+    <div id="alfa" class="alfa-off"></div>
+
+    <div id="header" class="header-off">
+        <div id="header2">
+            <div id="caso-cont">
+                <p id="caso-txt">Caso 1</p>
+            </div>
+            <div id="titulo">
+                <p>Competencias de liderazgo en Seguridad<br />LÍDERES BULA 2021</p>
+            </div>
+            <div id="botones">
+                <button id="video-btn" class="video-btn-enabled" onclick="goVideo(this)"></button>
+                <button id="sonido-btn" onclick="toggleAudio()" class="sonido-on"></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="welcomepage">
+        <h1 id="welcomepage-title" class="welcomepage-title-off">Competencias de liderazgo en seguridad</h1>
+        <p id="welcomepage-subtitle" class="welcomepage-title-off">Presta atención a cada una de las siguientes situaciones y toma la decisión que creas correcta en cada una de ellas</p>
+
+        <div class="welcomepage-graphic">
+            <div id="welcomepage-brillo-cont" class="welcomepage-brillo-off">
+                <div id="welcomepage-brillo" class="welcomepage-brillo-gira"></div>
+            </div>
+            <div id="welcomepage-cuadros" class="welcomepage-cuadros-off">
+                <div id="welcomepage-cuadro-1"></div>
+                <div id="welcomepage-cuadro-2"></div>
+                <div id="welcomepage-cuadro-3"></div>
+                <div id="welcomepage-cuadro-4"></div>
+            </div>
+            <div id="welcomepage-icon1" class="welcomepage-icon1-off"></div>
+            <div id="welcomepage-icon2" class="welcomepage-icon2-off"></div>
+        </div>
+
+        <button id="welcomepage-btn" class="welcomepage-title-off" onclick="startGame()">Comenzar</button>
+    </div>
+
+    <div id="loader" class="loader-on">
+        <!--<div id="loader-icon"></div>-->
+        <div id="loader-clip" class="spd_sprite" width="34" height="38" frames="25" src="assets/images/preloader_sprite.png"></div>
+        <div id="loader-text">Cargando</div>
+    </div>
+</div>
+
+<!--Librerias-->
+<script src="assets/sprites/fotograma.js"></script>
+<script src="assets/sprites/sprite.js"></script>
+
+<script src="assets/js/preguntas_data.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/timeline.js"></script>
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<script src="assets/js/scormfunctions.js"></script>
+<script src="assets/js/scorm.js"></script>
+
+<script>
+var in_option = null
+var over_option = null
+var pregunta_gone = null
+var click_mp3 = null
+var intro_mp3 = null
+
+var animacion_init = null
+
+window.onload = function(){
+    spdLoadSprite({idname:'loader-clip',autoplay:'off',callBack:function(){ 
+        spdCreateAnimation({id:0,sprite:'loader-clip'})
+        spdPlayAnimation({frame:1,stop:0,loop:true},0)
+
+        loadAudio({src:'assets/media/in-option.mp3',callBack:function(data){
+        in_option = data
+        loadAudio({src:'assets/media/click.mp3',callBack:function(data){
+        click_mp3 = data
+        loadAudio({src:'assets/media/over-option.mp3',callBack:function(data){
+        over_option = data
+        loadAudio({src:'assets/media/pregunta-gone.mp3',callBack:function(data){
+        pregunta_gone = data
+        loadAudio({src:'assets/media/intro.mp3',callBack:function(data){
+        intro_mp3 = data
+
+            spdCreateMovieClip({idname:'personaje',callBack:function(){
+                spdCreateMovieClipAnimation({id:0,moviename:'personaje'})
+
+                loadImage({url:'assets/images/opcion1-cont-large.png',callBack:function(){
+                loadImage({url:'assets/images/opcion2-cont-large.png',callBack:function(){
+                loadImage({url:'assets/images/opcion3-cont-large.png',callBack:function(){
+                    //animacion_init = setTimeout(function(){
+                        //clearTimeout(animacion_init)
+                        //animacion_init = null
+
+                        loadVideos()
+                        
+                    //},2000)
+                }})
+                }})
+                }})
+            }})
+
+        }})
+        }})
+        }})
+        }})
+        }})
+    }})
+}
+
+var players = []
+var players_data = []
+var lv = 0
+
+function loadVideos(){
+    initScorm(function(data){
+        if(data.completado){
+            alert("ya lo hizo")
+        }else{
+            for(i = data.actual;i<preguntas_data.length;i++){
+                var div = document.createElement('div')
+                div.className = 'situacion-frame situacion-frame-off'
+                div.id = 'situacion-frame-'+(i+1)
+    
+                getE('situaciones-frame').appendChild(div)
+            }
+            
+            actual_pregunta = data.actual
+            lv = data.actual
+            loadVideo()
+        }
+    })
+    
+}
+
+var animacion_welcome = null
+var welcome_elements = [
+    {
+        element:getE('welcomepage-title'),
+        class:'welcomepage-title-off',
+        new:'welcomepage-title-on'
+    },
+    {
+        element:getE('welcomepage-subtitle'),
+        class:'welcomepage-title-off',
+        new:'welcomepage-title-on'
+    },
+    {
+        element:getE('welcomepage-brillo-cont'),
+        class:'welcomepage-brillo-off',
+        new:'welcomepage-brillo-on'
+    },
+    {
+        element:getE('welcomepage-cuadros'),
+        class:'welcomepage-cuadros-off',
+        new:'welcomepage-cuadros-on'
+    },
+    {
+        element:getE('welcomepage-icon1'),
+        class:'welcomepage-icon1-off',
+        new:'welcomepage-icon1-on'
+    },
+    {
+        element:getE('welcomepage-icon2'),
+        class:'welcomepage-icon2-off',
+        new:'welcomepage-icon2-on'
+    },
+    {
+        element:getE('welcomepage-btn'),
+        class:'welcomepage-title-off',
+        new:'welcomepage-title-on'
+    }
+]
+
+function loadVideo(){
+    if(lv==preguntas_data.length){
+        //console.log("all videos loaded")
+        getE('loader-text').innerHTML = '100%'
+        
+        getE('loader').className = 'loader-off'
+        spdStopAnimation(0)
+
+        //animar welcomepage
+        var w = 0
+        
+        animacion_welcome = setInterval(function(){
+            if(w==welcome_elements.length){
+                clearInterval(animacion_welcome)
+                animacion_welcome = null
+            }else{
+                welcome_elements[w].element.classList.remove(welcome_elements[w].class)
+                welcome_elements[w].element.classList.add(welcome_elements[w].new)
+                w++
+            }
+        },200)
+        intro_mp3.play()
+    }else{
+        var player_options = {
+            id:preguntas_data[lv].vimeo,
+            width:getE('contenedor').getBoundingClientRect().width,
+            height:getE('contenedor').getBoundingClientRect().height,
+            loop:false,
+            autoplay:false,
+            controls:false,
+            title:false,
+            muted:false
+        }
+
+        var vplayer = new Vimeo.Player('situacion-frame-'+(lv+1), player_options);
+        vplayer.on('loaded',function(data){
+            players.push(vplayer)
+            lv++
+            getE('loader-text').innerHTML = String(parseInt((100*lv)/preguntas_data.length))+'%'
+            respuestas_usuario.respuestas.push({respuesta:'',resultado:''})
+            loadVideo()
+        })
+    }
+}
+
+function loadAudio(data){
+    var url = data.src
+
+    var audio_fx = null
+    audio_fx = document.createElement('audio')
+    audio_fx.setAttribute('src',url)
+    audio_fx.load()
+    audio_fx.addEventListener('loadeddata',function(){
+        //alert("cargo")
+        data.callBack(audio_fx)
+    })
+    audio_fx.addEventListener('error',function(){
+        data.callBack(null)
+    })
+}
+
+function loadImage(data){
+    var img = new Image()
+    img.onload = function(){
+        img.onload = null
+        img.onerror = null
+        img = null
+        
+        data.callBack({src:this.src,width:this.width,height:this.height})
+    }
+    img.onerror = function(){
+        img.onload = null
+        img.onerror = null
+        img = null
+        console.log("error: "+data.url)
+        data.callBack(this)
+    }
+    img.src = data.url
+}
+
+
+</script>
+</body>
+</html>

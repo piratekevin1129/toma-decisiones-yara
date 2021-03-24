@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "MAXLF-BOLD";
+    src: url("fonts/MAXLF-BOLD.TTF") format('truetype');
+}
+@font-face {
+    font-family: "MAXLF-LIGHT";
+    src: url("fonts/MAXLF-LIGHT.TTF") format('truetype');
+}
+@font-face {
+    font-family: "MAXLF-SEMIBOLD";
+    src: url("fonts/MAXLF-SEMIBOLD.TTF") format('truetype');
+}
+@font-face {
+    font-family: "MAXLF-REGULAR";
+    src: url("fonts/MAXLF-REGULAR.TTF") format('truetype');
+}
