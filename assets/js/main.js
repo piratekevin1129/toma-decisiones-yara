@@ -1,13 +1,21 @@
 var toggle_audio = true
 var toggle_audio_volume = 1
+var toggle_audio_volume_before = 1
 function toggleAudio(){
     if(toggle_audio){
         toggle_audio = false
+        toggle_audio_volume_before = toggle_audio_volume
         toggle_audio_volume = 0
         getE('sonido-btn').className = 'sonido-off'
     }else{
         toggle_audio = true
-        toggle_audio_volume = 1
+        if(toggle_audio_volume_before==0){
+            toggle_audio_volume = 1
+        }else{
+            toggle_audio_volume = toggle_audio_volume_before
+            toggle_audio_volume_before = 0
+        }
+        alert(toggle_audio_volume)
         getE('sonido-btn').className = 'sonido-on'
     }
     underground_mp3.volume = toggle_audio_volume
@@ -104,11 +112,20 @@ function setPregunta(){
         audio_final.load()
         audio_final.onloadedmetadata = function(){
             audio_final.onloadedmetadata = null
+            audio_final.onended = function(){
+                toggle_audio_volume = 1
+                toggle_audio_volume_before = 1
+                if(toggle_audio){
+                    underground_mp3.volume = toggle_audio_volume
+                }
+            }
             audio_final.currentTime = 0
             audio_final.play()
         }
-        toggle_audio_volume = 0.3
-        underground_mp3.volume = toggle_audio_volume
+        toggle_audio_volume = 0.1
+        if(toggle_audio){
+            underground_mp3.volume = toggle_audio_volume
+        }
         
         getE('pregunta-app').className = 'pregunta-off'
         getE('escenario').className = 'escenario-on'
@@ -217,7 +234,12 @@ function endVideo(data){
                 audio_pregunta.currentTime = 0
                 audio_pregunta.play()
             }
+            toggle_audio_volume = 1
+            toggle_audio_volume_before = 1
             underground_mp3.play()
+            if(toggle_audio){
+                underground_mp3.volume = toggle_audio_volume
+            }            
             
             getE('caso-txt').innerHTML = 'Caso '+(actual_pregunta+1)
             getE('header').className = 'header-on'
@@ -261,7 +283,12 @@ function endVideo(data){
             audio_pregunta.currentTime = 0
             audio_pregunta.play()
             
+            toggle_audio_volume = 1
+            toggle_audio_volume_before = 1
             underground_mp3.play()
+            if(toggle_audio){
+                underground_mp3.volume = toggle_audio_volume
+            }
             
             getE('header').className = 'header-on'
         },1000)
@@ -285,6 +312,11 @@ function outOpcion(key){
 function clickOpcion(key){
     var zn = getE('opcion'+key)
     var icon = zn.getElementsByClassName('result-icon')[0]
+
+    toggle_audio_volume = 0.1
+    if(toggle_audio){
+        underground_mp3.volume = toggle_audio_volume
+    }
 
     click_mp3.currentTime = 0
     click_mp3.play()

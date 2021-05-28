@@ -91,7 +91,7 @@ var preguntas_data = [
         id:5,
         size:'normal',
         vimeo:'519131710',
-        pregunta:'Si usted estuviera en el lugar de Janeth ¿Cómo resolvería situaciones de seguridad que requieren atención inmediata en picos altos de producción?',
+        pregunta:'Si usted estuviera en el lugar de Janeth ¿Cómo resolvería la situación de seguridad que requiere atención inmediata en picos altos de producción?',
         opcion1:'Janeth deberá concentrarse en la producción y asignar un equipo interdisciplinario para que en conjunto puedan atender la emergencia y cerrar la situación en el menor tiempo posible.',
         opcion2:'Janeth deberá suspender la operación y evaluar las condiciones que llevaron a los hechos de emergencias y convocar una reunión con todos los líderes',
         opcion3:'Janeth deberá apersonarse de la situación de emergencia, revisar y asignar las responsabilidades y actividades a quien le corresponda, dejando los hallazgos a debatir en la próxima reunión de equipo',
@@ -100,14 +100,14 @@ var preguntas_data = [
         bien:{
             title:'¡Muy bien! debes seguir:',
             objetivos:[
-                'Disponible cuando te necesiten ',
+                'Disponible cuando te necesiten',
                 'Contar con mente abierta y respetar las opiniones de los demás.',
                 'Y manteniendo la calma, dando órdenes y resolviendo situaciones que requieren atención inmediata tales como emergencias, incidentes, condiciones de riesgo, etc'
             ]
         },
         mal:{
             title:'¡Ups!',
-            msg:'<span>Debes mejorar</span>, porque tu liderazgo en Yara se alinea con la curiosidad y tú debes hacer parte de la verificación e implementación de mejoras de las condiciones de trabajo de tu equipo. <span>Tu ejemplo educa a todos los colegas.</span>'
+            msg:'<span>Debes mejorar</span>, porque en las situaciones desafiantes de emergencias, incidentes, condiciones de riesgo, etc. El lider actúa con calma, da órdenes y resuelve la situación apersonándose para encontrar soluciones. Como líder desarrollas mentalidad abierta y respetas las opiniones de los demás'
         }
     },
     {
@@ -146,7 +146,7 @@ var preguntas_data = [
         bien:{
             title:'¡Muy bien! debes seguir:',
             objetivos:[
-                'Haciendo preguntas a tu equipo de trabajo sobre las acciones que podemos implementar y resolver dudas para cumplir los objetivos de la estrategia del área y de HESQ.'
+                'Haciendo preguntas a tu equipo de trabajo sobre las acciones que podemos implementar y resolver dudas para cumplir los objetivos de la estrategia del área de HESQ.'
             ]
         },
         mal:{
@@ -159,7 +159,7 @@ var preguntas_data = [
         size:'normal',
         vimeo:'519134863',
         pregunta:'¿Qué debe hacer Diana con la situación presentada, teniendo en cuenta el desarrollo de los valores de Yara?',
-        opcion1:'Diana realiza la consulta en la recepción. Como no es muy conocedora del tema habla con HESQ y reporta el caso, además aprovechan lo sucedido para dar una charla al personal del área.',
+        opcion1:'Diana realiza la consulta en la recepción. Como no es muy conocedora del tema habla con HESQ y reporta el caso, quienes además aprovechan lo sucedido para dar una charla al personal del área.',
         opcion2:'Diana va a la recepción, habla con la encargada, consulta a quien pertenece la caja y espera a que sea removida',
         opcion3:'Diana muy proactiva decide rodar un poco la caja y despejar el extintor de este obstáculo, levanta la caja que es pesada y la cambia de sitio',
         correcto:1,
@@ -202,7 +202,7 @@ var preguntas_data = [
         size:'large',
         vimeo:'519136956',
         pregunta:'¿Cómo puedes mejorar este tipo de comunicaciones?',
-        opcion1:'Todas las comunicaciones y lecciones aprendidas derivadas de temas HESQ deben ser comunicadas con prioridad en las diferentes áreas',
+        opcion1:'Todas las comunicaciones y lecciones aprendidas derivadas de temas HESQ deben ser comunicadas con prioridad en toda la organización',
         opcion2:'Debo comunicar la información a los líderes para que ellos realicen el despliegue a sus equipos.',
         opcion3:'Debo garantizar en conjunto con mi equipo de trabajo que este tipo de situaciones no se vuelvan a presentar, proponiendo una estrategia de comunicaciones que asegure el cubrimiento de la población de interés',
         correcto:3,
@@ -215,8 +215,8 @@ var preguntas_data = [
             ]
         },
         mal:{
-            title:'¡Ups!',
-            msg:'Desde tu liderazgo esperamos que puedas seguir creciendo y aportando a todos los colaboradores. Por lo siguiente creemos importante que te asegures de que todos los temas de importancia sean cubiertos dentro de los trabajadores, entregando mensajes claros y oportunos que nos ayuden a prevenir eventos en el futuro. <span>Busquemos las mejores estrategias para que nos puedan dar los mejores resultados.</span>'
+            title:'Es importante que',
+            msg:'Asegures que todos los temas de importancia sean cubiertos dentro de los trabajadores, entregando mensajes claros y oportunos que nos ayuden a prevenir eventos en el futuro. Busquemos las estrategias para que nos puedan dar los mejores resultados.'
         }
     },
     {
@@ -236,8 +236,8 @@ var preguntas_data = [
             ]
         },
         mal:{
-            title:'¡Ups!',
-            msg:'Desde tu liderazgo esperamos que puedas seguir creciendo y aportando a todos los colaboradores. Por ello es importante que te asegures de involucrar a tu equipo en la identificación de riesgos inherentes en una actividad, más aún al asociarse a una <span>Regla de Oro.</span>'
+            title:'Como líder es importante que',
+            msg:'Te asegures de involucrar a tu equipo en la identificación de riesgos inherentes en una actividad, más aún al asociarse a una Regla de Oro.'
         }
     }
 ]

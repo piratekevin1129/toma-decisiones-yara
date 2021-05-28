@@ -100,13 +100,13 @@ function clickTimeline(event){
 
     if(duracion>_tl_current){
         //quiere avanzar, nel
-        if(resumed){
+        //if(resumed){
             stopTimeline()
             getE('bar-progress').style.width = porcentaje+'%'
             player.setCurrentTime(duracion).then(function() {
                 resumeTimeline()
             })
-        }
+        //}
     }else{
         //quiere retroceder, ok
         stopTimeline()
